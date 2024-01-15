@@ -1,0 +1,40 @@
+# Spring configuration
+spring:
+  application:
+    name: challenge
+  # Transactional database can be used an is already implemented
+  datasource:
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+    url: "jdbc:h2:mem:challenge;DB_CLOSE_ON_EXIT=FALSE"
+  # h2 configurations
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  # MongoDB configurations
+  data:
+    mongodb:
+      host: mongo
+      port: 27017
+      database: accounts
+  # JPA configurations
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create-drop
+  # MQ Configurations
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+
+
+rabbitmq:
+  queue: event_notification
+  exchange: event_exchange
+  routingkey: event_account
